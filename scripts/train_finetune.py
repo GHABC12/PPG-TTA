@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Source-supervised tail fine-tuning on case-disjoint VitalDB folds.
+"""Source-supervised encoder/head strategies on case-disjoint VitalDB folds.
 
-Only the final backbone block and supervised heads receive gradients. The
-outer test fold is excluded from fitting and early stopping and is never
-scored by this script.
+Supports LN+Head, configurable last-layer fine-tuning, and full fine-tuning.
+The outer test fold is excluded from fitting and early stopping.
 """
 from __future__ import annotations
 
@@ -56,6 +55,8 @@ def main() -> None:
     p = argparse.ArgumentParser(description="Fine-tune one source encoder tail block on VitalDB training cases")
     p.add_argument("--index", default="results/vitaldb_pilot/window_index.csv")
     p.add_argument("--backbone", choices=["papagei", "sigma"], required=True)
+    p.add_argument("--strategy", choices=["ln_head", "last_layers", "full"],
+                   default="last_layers")
     p.add_argument("--test-fold", type=int, required=True,
                    help="outer held-out fold; its labels are never used here")
     p.add_argument("--val-fold", type=int, required=True,
@@ -71,6 +72,10 @@ def main() -> None:
     p.add_argument("--encoder-lr", type=float, default=1e-5)
     p.add_argument("--head-lr", type=float, default=1e-3)
     p.add_argument("--weight-decay", type=float, default=1e-4)
+    p.add_argument("--tail-blocks", type=int, default=4,
+                   help="number of final encoder blocks for last_layers")
+    p.add_argument("--aux-morph-weight", type=float, default=0.0,
+                   help="optional morphology auxiliary loss; keep 0 for primary SpO2 baselines")
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     p.add_argument("--out-dir", default="results/vitaldb_pilot/finetune")
@@ -150,15 +155,30 @@ def main() -> None:
     yt_train = ((y_train - y_mean) / y_std).astype(np.float32)
     yt_val = ((y_val - y_mean) / y_std).astype(np.float32)
 
-    tail_parameters = encoder.train_last_blocks(1)
+    if a.strategy == "last_layers":
+        encoder_parameters = encoder.train_last_blocks(a.tail_blocks)
+        tail_blocks = a.tail_blocks
+    elif a.strategy == "full":
+        for parameter in encoder.parameters():
+            parameter.requires_grad_(True)
+        encoder_parameters = [p for p in encoder.parameters() if p.requires_grad]
+        tail_blocks = -1
+    else:
+        for parameter in encoder.parameters():
+            parameter.requires_grad_(False)
+        encoder_parameters = []
+        tail_blocks = 0
     trainable_state_keys = sorted(name for name, parameter in encoder.named_parameters()
                                   if parameter.requires_grad)
-    heads = nn.ModuleDict({"spo2": nn.Linear(z_train.shape[1], 1),
+    spo2_head = (nn.Sequential(nn.LayerNorm(z_train.shape[1]),
+                               nn.Linear(z_train.shape[1], 1))
+                 if a.strategy == "ln_head" else nn.Linear(z_train.shape[1], 1))
+    heads = nn.ModuleDict({"spo2": spo2_head,
                            "morph": nn.Linear(z_train.shape[1], 3)}).to(device)
-    optimizer = torch.optim.AdamW([
-        {"params": tail_parameters, "lr": a.encoder_lr},
-        {"params": heads.parameters(), "lr": a.head_lr},
-    ], weight_decay=a.weight_decay)
+    param_groups = [{"params": heads.parameters(), "lr": a.head_lr}]
+    if encoder_parameters:
+        param_groups.insert(0, {"params": encoder_parameters, "lr": a.encoder_lr})
+    optimizer = torch.optim.AdamW(param_groups, weight_decay=a.weight_decay)
     train_set = TensorDataset(torch.from_numpy(x_train), torch.from_numpy(yt_train),
                               torch.from_numpy(mt_train), torch.from_numpy(valid_train))
     loader = DataLoader(train_set, batch_size=a.batch_size, shuffle=True)
@@ -173,10 +193,11 @@ def main() -> None:
             pred_m = heads["morph"](z)
             loss_y = nn.functional.huber_loss(pred, by)
             loss_m = (nn.functional.smooth_l1_loss(pred_m, bm, reduction="none") * bv).sum() / bv.sum().clamp_min(1)
-            loss = loss_y + 0.1 * loss_m
+            loss = loss_y + a.aux_morph_weight * loss_m
             optimizer.zero_grad(set_to_none=True)
             loss.backward()
-            torch.nn.utils.clip_grad_norm_(tail_parameters, 1.0)
+            if encoder_parameters:
+                torch.nn.utils.clip_grad_norm_(encoder_parameters, 1.0)
             optimizer.step()
         encoder.eval(); heads.eval()
         val_pred_norm = []
@@ -221,7 +242,8 @@ def main() -> None:
         "best_epoch": best_epoch, "best_validation_mae": best_val,
         "best_validation_mean_case_mae": best_val,
         "selection_metric": "mean case MAE",
-        "seed": a.seed, "tail_blocks": 1, "protocol": protocol,
+        "seed": a.seed, "strategy": a.strategy, "tail_blocks": tail_blocks,
+        "aux_morph_weight": a.aux_morph_weight, "protocol": protocol,
         "train_case_ids": sorted(case_sets[0]),
         "validation_case_ids": sorted(case_sets[1]),
         "test_case_ids": sorted(case_sets[2]),
@@ -229,11 +251,12 @@ def main() -> None:
         "labels_used_for_early_stopping": "validation fold only",
         "test_labels_used_for_training_or_early_stopping": False,
     }
-    path = out_dir / f"finetune_{a.backbone}_fold{a.test_fold}.pt"
+    path = out_dir / f"finetune_{a.backbone}_{a.strategy}_fold{a.test_fold}.pt"
     torch.save(checkpoint, path)
     summary = {k: checkpoint[k] for k in (
         "backbone", "test_fold", "val_fold", "train_folds", "best_epoch",
-        "best_validation_mae", "seed", "tail_blocks", "protocol",
+        "best_validation_mae", "seed", "strategy", "tail_blocks",
+        "aux_morph_weight", "protocol",
         "train_case_ids", "validation_case_ids", "test_case_ids")}
     (out_dir / f"finetune_{a.backbone}_fold{a.test_fold}.json").write_text(
         json.dumps(summary, indent=2), encoding="utf-8")

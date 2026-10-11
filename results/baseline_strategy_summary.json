@@ -1,0 +1,81 @@
+{
+  "selection_rule": "minimum validation mean-case MAE within each outer training split",
+  "strategies": [
+    {
+      "strategy": "full",
+      "folds": 5,
+      "mean_validation_case_mae": 0.8322041478753089,
+      "mean_outer_test_case_mae": 0.9201259305974112,
+      "mean_train_median_baseline_case_mae": 0.6599059589449257,
+      "mean_outer_test_window_mae": 0.8269166105390372
+    },
+    {
+      "strategy": "last_layers",
+      "folds": 5,
+      "mean_validation_case_mae": 0.8282022267580033,
+      "mean_outer_test_case_mae": 0.9207729730197227,
+      "mean_train_median_baseline_case_mae": 0.6599059589449257,
+      "mean_outer_test_window_mae": 0.8245511120257042
+    },
+    {
+      "strategy": "linear_probe",
+      "folds": 5,
+      "mean_validation_case_mae": 0.8592019319534302,
+      "mean_outer_test_case_mae": 0.9303036627898468,
+      "mean_train_median_baseline_case_mae": 0.6599059589449257,
+      "mean_outer_test_window_mae": 0.8448863471483212
+    },
+    {
+      "strategy": "ln_head",
+      "folds": 5,
+      "mean_validation_case_mae": 0.8589893120527268,
+      "mean_outer_test_case_mae": 0.897518297653378,
+      "mean_train_median_baseline_case_mae": 0.6599059589449257,
+      "mean_outer_test_window_mae": 0.7998486297562252
+    }
+  ],
+  "oof_case_level_mae_by_strategy": {
+    "full": 0.9276703411427675,
+    "last_layers": 0.9301396941309814,
+    "linear_probe": 0.9339222720525022,
+    "ln_head": 0.9036886982529444
+  },
+  "selected_by_validation": {
+    "fold_selection": [
+      {
+        "fold": 0,
+        "selected_strategy": "last_layers",
+        "validation_mean_case_mae": 0.5115387365221977
+      },
+      {
+        "fold": 1,
+        "selected_strategy": "last_layers",
+        "validation_mean_case_mae": 0.7285562992095947
+      },
+      {
+        "fold": 2,
+        "selected_strategy": "full",
+        "validation_mean_case_mae": 0.8131175637245178
+      },
+      {
+        "fold": 3,
+        "selected_strategy": "last_layers",
+        "validation_mean_case_mae": 1.2564619123935699
+      },
+      {
+        "fold": 4,
+        "selected_strategy": "last_layers",
+        "validation_mean_case_mae": 0.8040027543902397
+      }
+    ],
+    "outer_oof_cases": 23,
+    "outer_oof_mean_case_mae": 0.9243466270615698,
+    "train_median_baseline_mean_case_mae": 0.6826946901987886,
+    "selected_minus_median_case_mae": 0.24165193686278108,
+    "selected_minus_median_case_bootstrap_95ci": [
+      0.1445110199718448,
+      0.3370698931889728
+    ]
+  },
+  "caveat": "single seed and 23 VitalDB cases; validation strategy selection is exploratory, not an independent clinical validation"
+}

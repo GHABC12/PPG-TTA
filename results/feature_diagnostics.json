@@ -1,0 +1,80 @@
+{
+  "diagnostic": "frozen PaPaGei VitalDB embeddings, training folds only",
+  "folds": [
+    {
+      "test_fold": 0,
+      "validation_fold": 1,
+      "train_case_count": 15,
+      "n_windows": 15512,
+      "n_features": 512,
+      "feature_std_mean": 0.27101507782936096,
+      "feature_std_median": 0.27764785289764404,
+      "feature_std_p05": 0.13269734084606172,
+      "feature_std_min": 0.09016237407922745,
+      "near_zero_std_threshold": 2.77647852897644e-07,
+      "near_zero_feature_fraction": 0.0,
+      "covariance_effective_rank": 8.547582626342773,
+      "effective_rank_fraction": 0.01669449731707573
+    },
+    {
+      "test_fold": 1,
+      "validation_fold": 2,
+      "train_case_count": 14,
+      "n_windows": 15518,
+      "n_features": 512,
+      "feature_std_mean": 0.2565023601055145,
+      "feature_std_median": 0.2618703246116638,
+      "feature_std_p05": 0.13718001246452333,
+      "feature_std_min": 0.09302448481321335,
+      "near_zero_std_threshold": 2.618703246116638e-07,
+      "near_zero_feature_fraction": 0.0,
+      "covariance_effective_rank": 10.035834312438965,
+      "effective_rank_fraction": 0.019601238891482353
+    },
+    {
+      "test_fold": 2,
+      "validation_fold": 3,
+      "train_case_count": 13,
+      "n_windows": 15320,
+      "n_features": 512,
+      "feature_std_mean": 0.28340020775794983,
+      "feature_std_median": 0.286734014749527,
+      "feature_std_p05": 0.16706085130572318,
+      "feature_std_min": 0.11576113849878311,
+      "near_zero_std_threshold": 2.86734014749527e-07,
+      "near_zero_feature_fraction": 0.0,
+      "covariance_effective_rank": 11.026405334472656,
+      "effective_rank_fraction": 0.021535947918891907
+    },
+    {
+      "test_fold": 3,
+      "validation_fold": 4,
+      "train_case_count": 13,
+      "n_windows": 15325,
+      "n_features": 512,
+      "feature_std_mean": 0.3046056032180786,
+      "feature_std_median": 0.3068431615829468,
+      "feature_std_p05": 0.17853421345353127,
+      "feature_std_min": 0.12011384218931198,
+      "near_zero_std_threshold": 3.0684316158294675e-07,
+      "near_zero_feature_fraction": 0.0,
+      "covariance_effective_rank": 11.126738548278809,
+      "effective_rank_fraction": 0.021731911227107048
+    },
+    {
+      "test_fold": 4,
+      "validation_fold": 0,
+      "train_case_count": 14,
+      "n_windows": 15239,
+      "n_features": 512,
+      "feature_std_mean": 0.29979580640792847,
+      "feature_std_median": 0.30673325061798096,
+      "feature_std_p05": 0.17195346280932428,
+      "feature_std_min": 0.11474452167749405,
+      "near_zero_std_threshold": 3.067332506179809e-07,
+      "near_zero_feature_fraction": 0.0,
+      "covariance_effective_rank": 10.12319564819336,
+      "effective_rank_fraction": 0.019771866500377655
+    }
+  ]
+}

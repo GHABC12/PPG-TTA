@@ -54,7 +54,22 @@ $PY scripts/evaluate_tta.py --test-fold 0
 
 PaPaGei adapter 从现有官方实现读取 `outputs[-1]` 的 512 维 pooled latent，并要求官方检查点严格匹配。source 阶段按病例折分，训练 SpO₂ 线性头和形态辅助头，验证折选择 epoch，测试折只在评估时读取标签。TTA 每个测试病例重置到 source encoder，只开放最后一个 ResNet block；损失由质量门控一致性、形态保持和参数近端约束组成。`EpisodicQualityMorphTTA.step()` 不接收 SpO₂ 标签参数。
 
-`scripts/train_finetune.py` 提供只微调最后一个 backbone block 的 source-tail 基线；训练病例、early stopping 验证病例与外层测试病例显式分离，检查点仅保存更新过的末块权重和头部。本阶段限定为 VitalDB-only 可行性试验，没有使用其他数据集。
+`scripts/train_finetune.py` 现在提供 `ln_head`、`last_layers`（默认解冻末 4 个 block，可由 `--tail-blocks` 设置）和 `full` 三种策略；`train_source.py` 是 frozen linear probe。主策略比较默认关闭形态辅助损失（`--aux-morph-weight 0`），而病例折分、训练折统计、验证早停和外层测试隔离保持一致。目标使用训练折 `y_mean/y_std` 标准化并在预测时反变换，这已等价于训练折均值残差回归，无需重复建模。
+
+```bash
+python scripts/train_finetune.py --backbone papagei --strategy ln_head \
+  --test-fold 0 --val-fold 1 --out-dir results/vitaldb_pilot/baselines/ln_head
+python scripts/train_finetune.py --backbone papagei --strategy last_layers \
+  --tail-blocks 4 --test-fold 0 --val-fold 1 \
+  --out-dir results/vitaldb_pilot/baselines/last_layers
+python scripts/train_finetune.py --backbone papagei --strategy full \
+  --encoder-lr 3e-6 --test-fold 0 --val-fold 1 \
+  --out-dir results/vitaldb_pilot/baselines/full
+```
+
+可用 `scripts/diagnose_features.py` 对每折训练病例的冻结 embedding 报告通道标准差和协方差有效秩。`evaluate_tta.py` 默认关闭 morphology loss；可选 MC Dropout `--uncertainty-mode gated|weighted`，只将 teacher 中 Dropout 子模块临时设为 train，BatchNorm 保持 eval；方差阈值与权重尺度必须通过验证折选定。所有 TTA 预测仍遵循先预测当前批、再基于无标签当前批更新后续批的 prequential 协议，病例边界重置状态。评估标签在全部预测/更新完成后才与预测合并。
+
+`evaluate_tta.py` 还提供 `--shift gain|baseline_drift|gaussian_noise|motion --severity ...` 的确定性输入端扰动。扰动作用在已逐窗归一化的缓存波形上，属于模型输入压力测试，不代表归一化前真实传感器增益；扰动波形的质量分和形态量会重新计算。每次只指定一种强度，宜报告完整严重度曲线，不得用外层测试标签选强度。
 
 SIGMA 主干使用独立的 20 秒、50 Hz 协议（Butterworth 0.5–8 Hz + `[-1,1]` min-max），每个 2 秒生成一个 token（`patch_size=100`），先建立独立索引再执行：
 
