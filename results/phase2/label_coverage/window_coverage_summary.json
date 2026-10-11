@@ -1,0 +1,35 @@
+{
+  "data_source": "pre-existing VitalDB only",
+  "cases": 23,
+  "interval_s": 1.0,
+  "label": "median Solar8000/PLETH_SPO2 among finite values in [70,100]",
+  "legacy_rule": "at least 5 valid SpO2 samples per window",
+  "comparable_rule": "at least 50% valid SpO2 samples per window",
+  "window_summaries": {
+    "10": {
+      "total_windows": 27319,
+      "legacy_valid_windows": 25646,
+      "legacy_valid_fraction": 0.9387605695669681,
+      "fixed_coverage_valid_windows": 25646,
+      "fixed_coverage_valid_fraction": 0.9387605695669681,
+      "median_case_valid_fraction_fixed_coverage": 0.9368868541530412
+    },
+    "30": {
+      "total_windows": 9100,
+      "legacy_valid_windows": 8655,
+      "legacy_valid_fraction": 0.951098901098901,
+      "fixed_coverage_valid_windows": 8443,
+      "fixed_coverage_valid_fraction": 0.9278021978021977,
+      "median_case_valid_fraction_fixed_coverage": 0.9322865554465162
+    },
+    "60": {
+      "total_windows": 4546,
+      "legacy_valid_windows": 4356,
+      "legacy_valid_fraction": 0.9582050153981522,
+      "fixed_coverage_valid_windows": 4168,
+      "fixed_coverage_valid_fraction": 0.9168499780026397,
+      "median_case_valid_fraction_fixed_coverage": 0.920863309352518
+    }
+  },
+  "alignment_note": "PPG and SpO2 are sampled from the same VitalFile common start/end grid; timestamps were audited separately in timestamp_alignment_sample.csv."
+}

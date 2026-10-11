@@ -1,0 +1,37 @@
+{
+  "dataset": "existing VitalDB only",
+  "representation": "cached frozen PaPaGei embeddings",
+  "split": "five case-grouped folds; one fold held out, next fold used for Ridge alpha selection",
+  "n_cases": 23,
+  "n_windows": 25638,
+  "embedding_dim": 512,
+  "label": "10-second window median Solar SpO2, already filtered to valid 70-100 values",
+  "case_mean_mae_definition": "mean of per-case mean absolute window errors (matches existing baseline case-MAE aggregation)",
+  "models": {
+    "ridge": {
+      "window_mae": 1.0103249380204855,
+      "window_rmse": 1.6990531648550111,
+      "window_r2": -0.4066161835472384,
+      "window_pearson_r": 0.1996028920356427,
+      "window_spearman_r": -0.008512124714498937,
+      "case_mean_mae": 1.0738148101470764
+    },
+    "xgb": {
+      "window_mae": 0.925779583839687,
+      "window_rmse": 1.7028204184804392,
+      "window_r2": -0.4530874804272635,
+      "window_pearson_r": 0.2615041542957969,
+      "window_spearman_r": 0.06716131553452057,
+      "case_mean_mae": 1.0056208272937288
+    }
+  },
+  "visualization": {
+    "n_case_centroids": 23,
+    "pca_explained_variance_ratio": [
+      0.8243629336357117,
+      0.06760439276695251
+    ],
+    "pc1_spo2_spearman_r": 0.5370165059742459
+  },
+  "nonlinear_train_sampling": "up to 250 windows per training case; full held-out folds used for evaluation"
+}

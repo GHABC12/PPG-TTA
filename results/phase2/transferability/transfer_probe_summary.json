@@ -1,0 +1,37 @@
+{
+  "data_source": "pre-existing VitalDB only",
+  "representation": "cached frozen PaPaGei embeddings",
+  "window_s": 10,
+  "coverage_threshold": 0.5,
+  "folds": "5 grouped case folds; next fold used for Ridge alpha selection",
+  "label_rules": {
+    "hr": "Solar8000/HR median within [30,220] bpm",
+    "resp_co2": "Solar8000/RR_CO2 median within [4,60] breaths/min"
+  },
+  "targets": {
+    "hr": {
+      "labeled_windows": 24378,
+      "all_windows": 25638,
+      "label_coverage": 0.9508542007956939,
+      "labeled_cases": 23,
+      "ridge_case_mean_mae": 5.137080092440507,
+      "median_baseline_case_mean_mae": 11.675006674142642,
+      "ridge_window_mae": 5.53737517622153,
+      "median_baseline_window_mae": 12.819381164730771,
+      "ridge_window_r2": 0.550992077473446,
+      "caveat": "Single VitalDB source; monitor-derived labels are not independent clinical references."
+    },
+    "resp_co2": {
+      "labeled_windows": 24180,
+      "all_windows": 25638,
+      "label_coverage": 0.9431312894921601,
+      "labeled_cases": 23,
+      "ridge_case_mean_mae": 2.379619429993382,
+      "median_baseline_case_mean_mae": 2.56769849728862,
+      "ridge_window_mae": 2.3181416809158852,
+      "median_baseline_window_mae": 2.502330559339529,
+      "ridge_window_r2": -0.5039409952732372,
+      "caveat": "Single VitalDB source; monitor-derived labels are not independent clinical references."
+    }
+  }
+}

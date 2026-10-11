@@ -1,0 +1,26 @@
+{
+  "data_source": "pre-existing VitalDB only",
+  "indexed_cases": 23,
+  "existing_window_count": 25638,
+  "track_availability_counts": {
+    "ppg": 23,
+    "spo2": 23,
+    "hr": 23,
+    "pleth_hr": 23,
+    "resp_vent": 22,
+    "resp_co2": 23,
+    "resp_primus": 23,
+    "bis_sqi": 21
+  },
+  "file_missing_cases": [],
+  "timestamp_sample_cases_one_per_fold": [
+    2222,
+    2500,
+    834,
+    278,
+    1
+  ],
+  "timestamp_interval_s": 1.0,
+  "sqi_caveat": "BIS/SQI is a BIS/EEG quality signal, not a PPG signal-quality ground truth.",
+  "respiratory_caveat": "Respiratory tracks are candidates; coverage and device/measurement semantics must be checked before treating them as validated targets."
+}
