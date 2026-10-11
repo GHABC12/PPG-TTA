@@ -1,0 +1,99 @@
+{
+  "folds": 5,
+  "case_grouped": true,
+  "test_labels_used_for_selection": false,
+  "prediction_protocol": "prequential; score before current-batch update",
+  "validation_selection_note": "each outer fold selects only on its own validation fold; that fold also early-stops the source model",
+  "models": {
+    "papagei_lp": {
+      "selections": [
+        {
+          "fold": 0,
+          "selected": {
+            "name": "lr1e-05_m0.5",
+            "lr": 1e-05,
+            "lambda_morph": 0.5,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 0.5552222847482149,
+            "validation_window_mae": 0.5268979505706769,
+            "validation_prediction_std": 0.4011081237535303,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/lp/papagei_lp_outer0_lr1e-05_m0.5"
+          },
+          "validation_fold": 1,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 1,
+          "selected": {
+            "name": "lr1e-06_m0.5",
+            "lr": 1e-06,
+            "lambda_morph": 0.5,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 0.775504188150129,
+            "validation_window_mae": 0.7000302525524177,
+            "validation_prediction_std": 0.5562590361792474,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/lp/papagei_lp_outer1_lr1e-06_m0.5"
+          },
+          "validation_fold": 2,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 2,
+          "selected": {
+            "name": "no_update",
+            "lr": 1e-05,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 1.01,
+            "validation_mean_case_mae": 0.8352222571377702,
+            "validation_window_mae": 0.7715909406062471,
+            "validation_prediction_std": 0.34555609049645036,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/lp/papagei_lp_outer2_no_update"
+          },
+          "validation_fold": 3,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 3,
+          "selected": {
+            "name": "no_update",
+            "lr": 1e-05,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 1.01,
+            "validation_mean_case_mae": 1.2915207691031285,
+            "validation_window_mae": 1.060384430883479,
+            "validation_prediction_std": 0.2450602267310773,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/lp/papagei_lp_outer3_no_update"
+          },
+          "validation_fold": 4,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 4,
+          "selected": {
+            "name": "lr1e-06_m0",
+            "lr": 1e-06,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 0.8355000065399454,
+            "validation_window_mae": 0.7699947888523655,
+            "validation_prediction_std": 0.33393477558875184,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/lp/papagei_lp_outer4_lr1e-06_m0"
+          },
+          "validation_fold": 0,
+          "validation_reused_for_source_early_stopping": true
+        }
+      ],
+      "oof_predictions": 25638,
+      "oof_mean_case_mae": {
+        "source_only": 0.9339089886577551,
+        "validation_selected_tta": 0.9339509817241046,
+        "train_median_constant": 0.6826946901987886
+      }
+    }
+  }
+}

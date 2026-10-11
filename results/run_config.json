@@ -1,0 +1,21 @@
+{
+  "seed": 42,
+  "case_sample_n": 24,
+  "folds": 5,
+  "folds_evaluated": [0, 1, 2, 3, 4],
+  "validation_fold_rule": "next fold ID; other three folds train",
+  "backbones": [
+    "papagei",
+    "sigma"
+  ],
+  "tta": {
+    "quality_threshold": 0.5,
+    "lr": 1e-05,
+    "lambda_morph": 0.1,
+    "lambda_reg": 0.0001,
+    "batch_size": 8,
+    "tail_blocks": 1,
+    "episode_reset": "case"
+  },
+  "note": "Feasibility pilot only; target labels excluded from TTA updates; all five case folds evaluated with one seed."
+}

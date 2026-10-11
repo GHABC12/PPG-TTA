@@ -1,0 +1,93 @@
+
+================================================================================
+🎯 Model Selection - Dynamic Configuration
+================================================================================
+Backbone: sigma_ppg_pro
+Input size: 1000
+Patch size: 100
+Num classes: 1
+In channels: 1
+Pretrained: True
+================================================================================
+
+📦 Creating sigma_ppg_pro with dynamic parameters...
+
+================================================================================
+🏗️  Creating Model - Dynamic Configuration
+================================================================================
+Model size: sigma_ppg_pro
+Input size: 1000
+Patch size: 100
+Number of patches: 10
+Configuration:
+  out_chans: 12
+  embed_dim: 360
+  depth: 18
+  num_heads: 12
+  drop_rate: 0.08
+  attn_drop_rate: 0.08
+  drop_path_rate: 0.15
+================================================================================
+
+✅ Model created with LayerScale (init_values=0.1)
+✅ time_embed already correct size: torch.Size([1, 10, 360])
+🔧 Resizing pos_embed: torch.Size([1, 11, 360]) -> torch.Size([1, 10, 360])
+
+================================================================================
+📦 Loading Pretrained Weights
+   Path: weights/sigma.pth
+   Strict shape match: False
+================================================================================
+✅ Found checkpoint['model']
+
+📊 Checkpoint: 344 parameters
+📊 Model: 329 parameters
+  🔧 Interpolating time_embed: torch.Size([1, 120, 360]) -> torch.Size([1, 10, 360])
+  🔧 Interpolating pos_embed: torch.Size([1, 129, 360]) -> torch.Size([1, 10, 360])
+
+================================================================================
+📈 Loading Results
+================================================================================
+
+✅ Successfully loaded: 327/329 parameters
+   Loading rate: 99.4%
+
+📊 Loading breakdown:
+   Alias (fc_norm): 2 params
+   Alias (patch_embed): 12 params
+   Alias (patch_proj): 2 params
+   Direct: 309 params
+   Interpolated: 2 params
+
+⚠️ Missing keys: 2
+
+  📌 head: 2 params
+     ✅ Expected - task-specific head (random init)
+
+================================================================================
+🎯 Critical Check - Backbone Loading
+================================================================================
+
+📊 Backbone: 253/253 (100.0%)
+✅ Excellent - Backbone well loaded
+
+📋 Key components check:
+✅ patch_embed     12/ 12 (100.0%)
+✅ blocks          234/234 (100.0%)
+✅ pos_embed       1/  1 (100.0%)
+✅ time_embed      1/  1 (100.0%)
+
+================================================================================
+✅ Weight loading completed!
+================================================================================
+
+📊 Model Statistics:
+  Total parameters: 28,140,553
+  Trainable parameters: 28,140,553 (100.00%)
+  Use patches (4D input): True
+================================================================================
+
+embedding_shape (2, 360)
+all_finite True
+use_patches True
+pos_embed_shape (1, 11, 360)
