@@ -1,0 +1,339 @@
+{
+  "dataset": "pre-existing VitalDB only",
+  "estimand_scope": "case-aware episodic adaptation; patient identifiers unavailable, so patient-level generalization is not claimed",
+  "case_split": "existing five case-disjoint outer folds; source and LN+Head checkpoints fixed per fold",
+  "adaptation_scope": "state and optimizer reset for each held-out case; first 32 unlabeled windows are warmup and excluded from scoring; later batches are predicted before their unlabeled update",
+  "labels_used_in_update": false,
+  "synthetic_shift_scope": "perturbations are applied after existing per-window z-score preprocessing and are model-input stress tests, not raw-sensor or clinical patient-shift evidence",
+  "config": {
+    "bottleneck": 32,
+    "lr": 0.0001,
+    "steps_per_batch": 5,
+    "batch_size": 32,
+    "warmup_windows": 32,
+    "dropout": 0.1,
+    "mc_samples": 8,
+    "uncertainty_scale_normalized_target_units": 1.0,
+    "lambda_patient": 0.1,
+    "identity_guard_weight": 0.01,
+    "shifts": [
+      {
+        "name": "clean",
+        "severity": 0.0
+      },
+      {
+        "name": "gain_0.8",
+        "severity": 0.8
+      },
+      {
+        "name": "gain_1.2",
+        "severity": 1.2
+      },
+      {
+        "name": "baseline_drift_0.1",
+        "severity": 0.1
+      },
+      {
+        "name": "gaussian_noise_0.05",
+        "severity": 0.05
+      }
+    ]
+  },
+  "metrics": "per-case MAE, macro mean, paired case bootstrap 95% CI for frozen-source minus method MAE",
+  "by_shift_method": {
+    "clean": {
+      "consistency_only": {
+        "case_mean_mae": 0.8897531095147133,
+        "case_mae_sd": 0.24801818846467316,
+        "case_mean_rmse": 1.6739611423015597,
+        "case_mean_bias": 0.17027669902890918,
+        "mean_prediction_std": 0.32995153158903123,
+        "scored_windows": 24902
+      },
+      "frozen": {
+        "case_mean_mae": 0.9104191094636918,
+        "case_mae_sd": 0.2627202860296796,
+        "case_mean_rmse": 1.7020408630371093,
+        "case_mean_bias": 0.19314610007451843,
+        "mean_prediction_std": 0.3271449565887451,
+        "scored_windows": 24902
+      },
+      "full_patta": {
+        "case_mean_mae": 0.8894200989603996,
+        "case_mae_sd": 0.23855375364145145,
+        "case_mean_rmse": 1.675049384832382,
+        "case_mean_bias": 0.1510796116362326,
+        "mean_prediction_std": 0.3623476484417915,
+        "scored_windows": 24902
+      },
+      "ln_head": {
+        "case_mean_mae": 0.8764383465051651,
+        "case_mae_sd": 0.27813378755985596,
+        "case_mean_rmse": 1.702371856570244,
+        "case_mean_bias": 0.23188655406236647,
+        "mean_prediction_std": 0.2913403046131134,
+        "scored_windows": 24902
+      },
+      "patient_only": {
+        "case_mean_mae": 0.8989681637287139,
+        "case_mae_sd": 0.26933693748857507,
+        "case_mean_rmse": 1.6918508398532868,
+        "case_mean_bias": 0.19830376848345627,
+        "mean_prediction_std": 0.3104782873392105,
+        "scored_windows": 24902
+      },
+      "train_median": {
+        "case_mean_mae": 0.6338542991131544,
+        "case_mae_sd": 0.4536081741286152,
+        "case_mean_rmse": 1.725933349132538,
+        "case_mean_bias": 0.6338542991131544,
+        "mean_prediction_std": 0.0,
+        "scored_windows": 24902
+      },
+      "uncertainty_weighted": {
+        "case_mean_mae": 0.8932287847995759,
+        "case_mae_sd": 0.2504286116444048,
+        "case_mean_rmse": 1.6795594173669812,
+        "case_mean_bias": 0.17212717194110155,
+        "mean_prediction_std": 0.33370670884847636,
+        "scored_windows": 24902
+      }
+    },
+    "gain_0.8": {
+      "consistency_only": {
+        "case_mean_mae": 0.8166370671987533,
+        "case_mae_sd": 0.38441183162503473,
+        "case_mean_rmse": 1.6844028186798095,
+        "case_mean_bias": 0.39543254625052215,
+        "mean_prediction_std": 0.2698473986983299,
+        "scored_windows": 24902
+      },
+      "frozen": {
+        "case_mean_mae": 0.8267897272109985,
+        "case_mae_sd": 0.4193189078887102,
+        "case_mean_rmse": 1.7055703198909762,
+        "case_mean_bias": 0.5356463965773581,
+        "mean_prediction_std": 0.28295279785990707,
+        "scored_windows": 24902
+      },
+      "full_patta": {
+        "case_mean_mae": 0.8330348643660546,
+        "case_mae_sd": 0.3672209156163087,
+        "case_mean_rmse": 1.6953106075525284,
+        "case_mean_bias": 0.3841093233413994,
+        "mean_prediction_std": 0.2968215151131153,
+        "scored_windows": 24902
+      },
+      "ln_head": {
+        "case_mean_mae": 0.8051791158318519,
+        "case_mae_sd": 0.36895019495419823,
+        "case_mean_rmse": 1.707220176458359,
+        "case_mean_bias": 0.562096187910065,
+        "mean_prediction_std": 0.2838195729255676,
+        "scored_windows": 24902
+      },
+      "patient_only": {
+        "case_mean_mae": 0.8130033883452417,
+        "case_mae_sd": 0.4154843792545669,
+        "case_mean_rmse": 1.6988810670375827,
+        "case_mean_bias": 0.5242037281021477,
+        "mean_prediction_std": 0.2662549862265587,
+        "scored_windows": 24902
+      },
+      "train_median": {
+        "case_mean_mae": 0.6338542991131544,
+        "case_mae_sd": 0.4536081741286152,
+        "case_mean_rmse": 1.725933349132538,
+        "case_mean_bias": 0.6338542991131544,
+        "mean_prediction_std": 0.0,
+        "scored_windows": 24902
+      },
+      "uncertainty_weighted": {
+        "case_mean_mae": 0.8270565748214722,
+        "case_mae_sd": 0.3769544438332125,
+        "case_mean_rmse": 1.6826506495475768,
+        "case_mean_bias": 0.38528641518205403,
+        "mean_prediction_std": 0.2726720857620239,
+        "scored_windows": 24902
+      }
+    },
+    "gain_1.2": {
+      "consistency_only": {
+        "case_mean_mae": 0.9419205266237259,
+        "case_mae_sd": 0.2515930158389427,
+        "case_mean_rmse": 1.715824786424637,
+        "case_mean_bias": 0.2537120429147035,
+        "mean_prediction_std": 0.5009089678525924,
+        "scored_windows": 24902
+      },
+      "frozen": {
+        "case_mean_mae": 0.986392160654068,
+        "case_mae_sd": 0.23712665194100377,
+        "case_mean_rmse": 1.781675755381584,
+        "case_mean_bias": 0.3905461796745658,
+        "mean_prediction_std": 0.4856857424974441,
+        "scored_windows": 24902
+      },
+      "full_patta": {
+        "case_mean_mae": 0.962841240167618,
+        "case_mae_sd": 0.24864694326114634,
+        "case_mean_rmse": 1.7128843158483504,
+        "case_mean_bias": 0.2081971660256386,
+        "mean_prediction_std": 0.5749699127674103,
+        "scored_windows": 24902
+      },
+      "ln_head": {
+        "case_mean_mae": 0.8787865576148033,
+        "case_mae_sd": 0.29611748867375604,
+        "case_mean_rmse": 1.720183565020561,
+        "case_mean_bias": 0.36391005322337144,
+        "mean_prediction_std": 0.30687359482049936,
+        "scored_windows": 24902
+      },
+      "patient_only": {
+        "case_mean_mae": 0.9630217212438584,
+        "case_mae_sd": 0.24620532395394162,
+        "case_mean_rmse": 1.758692780137062,
+        "case_mean_bias": 0.3921833588182926,
+        "mean_prediction_std": 0.46412642836570744,
+        "scored_windows": 24902
+      },
+      "train_median": {
+        "case_mean_mae": 0.6338542991131544,
+        "case_mae_sd": 0.4536081741286152,
+        "case_mean_rmse": 1.725933349132538,
+        "case_mean_bias": 0.6338542991131544,
+        "mean_prediction_std": 0.0,
+        "scored_windows": 24902
+      },
+      "uncertainty_weighted": {
+        "case_mean_mae": 0.9406828367710114,
+        "case_mae_sd": 0.25180434449652583,
+        "case_mean_rmse": 1.709082027077675,
+        "case_mean_bias": 0.2592611740715801,
+        "mean_prediction_std": 0.5063962852954864,
+        "scored_windows": 24902
+      }
+    },
+    "baseline_drift_0.1": {
+      "consistency_only": {
+        "case_mean_mae": 0.8949880051612855,
+        "case_mae_sd": 0.2482253611645151,
+        "case_mean_rmse": 1.6770214277505875,
+        "case_mean_bias": 0.16845318481326102,
+        "mean_prediction_std": 0.32713811486959454,
+        "scored_windows": 24902
+      },
+      "frozen": {
+        "case_mean_mae": 0.9107838124036789,
+        "case_mae_sd": 0.26218702215180467,
+        "case_mean_rmse": 1.7029943239688872,
+        "case_mean_bias": 0.18989524682052433,
+        "mean_prediction_std": 0.32806690782308573,
+        "scored_windows": 24902
+      },
+      "full_patta": {
+        "case_mean_mae": 0.8937331184744834,
+        "case_mae_sd": 0.23427098365470067,
+        "case_mean_rmse": 1.6768988329172134,
+        "case_mean_bias": 0.14713715980760753,
+        "mean_prediction_std": 0.36152357578277583,
+        "scored_windows": 24902
+      },
+      "ln_head": {
+        "case_mean_mae": 0.8749375349283219,
+        "case_mae_sd": 0.27781508392943416,
+        "case_mean_rmse": 1.7005705457925795,
+        "case_mean_bias": 0.2300459225103259,
+        "mean_prediction_std": 0.2898466295003891,
+        "scored_windows": 24902
+      },
+      "patient_only": {
+        "case_mean_mae": 0.9006406950950623,
+        "case_mae_sd": 0.2685551571861423,
+        "case_mean_rmse": 1.6931739377975465,
+        "case_mean_bias": 0.1945045904139988,
+        "mean_prediction_std": 0.3109558647871017,
+        "scored_windows": 24902
+      },
+      "train_median": {
+        "case_mean_mae": 0.6338542991131544,
+        "case_mae_sd": 0.4536081741286152,
+        "case_mean_rmse": 1.725933349132538,
+        "case_mean_bias": 0.6338542991131544,
+        "mean_prediction_std": 0.0,
+        "scored_windows": 24902
+      },
+      "uncertainty_weighted": {
+        "case_mean_mae": 0.8948476952314376,
+        "case_mae_sd": 0.24974842151909052,
+        "case_mean_rmse": 1.6820897430181503,
+        "case_mean_bias": 0.17359723787754772,
+        "mean_prediction_std": 0.3313110873103141,
+        "scored_windows": 24902
+      }
+    },
+    "gaussian_noise_0.05": {
+      "consistency_only": {
+        "case_mean_mae": 0.899018910229206,
+        "case_mae_sd": 0.2575488760257671,
+        "case_mean_rmse": 1.6852634274959564,
+        "case_mean_bias": 0.17368225723505018,
+        "mean_prediction_std": 0.32927845418453217,
+        "scored_windows": 24902
+      },
+      "frozen": {
+        "case_mean_mae": 0.916124628186226,
+        "case_mae_sd": 0.250784671200935,
+        "case_mean_rmse": 1.7035692840814591,
+        "case_mean_bias": 0.1801371701341122,
+        "mean_prediction_std": 0.3335724118351936,
+        "scored_windows": 24902
+      },
+      "full_patta": {
+        "case_mean_mae": 0.8974349698424339,
+        "case_mae_sd": 0.2470569105119235,
+        "case_mean_rmse": 1.6778816145658493,
+        "case_mean_bias": 0.15159776358865204,
+        "mean_prediction_std": 0.3681230983138084,
+        "scored_windows": 24902
+      },
+      "ln_head": {
+        "case_mean_mae": 0.8804448288679122,
+        "case_mae_sd": 0.2721931620321466,
+        "case_mean_rmse": 1.702490767240524,
+        "case_mean_bias": 0.23042803205549717,
+        "mean_prediction_std": 0.2925656536221504,
+        "scored_windows": 24902
+      },
+      "patient_only": {
+        "case_mean_mae": 0.9038500165939333,
+        "case_mae_sd": 0.25739806045498936,
+        "case_mean_rmse": 1.692287423610687,
+        "case_mean_bias": 0.18401881557889288,
+        "mean_prediction_std": 0.31594649642705913,
+        "scored_windows": 24902
+      },
+      "train_median": {
+        "case_mean_mae": 0.6338542991131544,
+        "case_mae_sd": 0.4536081741286152,
+        "case_mean_rmse": 1.725933349132538,
+        "case_mean_bias": 0.6338542991131544,
+        "mean_prediction_std": 0.0,
+        "scored_windows": 24902
+      },
+      "uncertainty_weighted": {
+        "case_mean_mae": 0.8940700277686119,
+        "case_mae_sd": 0.25917075696383557,
+        "case_mean_rmse": 1.6774890375137328,
+        "case_mean_bias": 0.17613888517022133,
+        "mean_prediction_std": 0.33466114580631257,
+        "scored_windows": 24902
+      }
+    }
+  },
+  "paired_bootstrap_file": "paired_bootstrap_summary.csv",
+  "case_metrics_file": "case_metrics.csv",
+  "fold_metrics_file": "fold_metrics.csv",
+  "updates_file": "update_diagnostics.csv"
+}
