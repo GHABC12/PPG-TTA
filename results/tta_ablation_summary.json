@@ -1,0 +1,418 @@
+{
+  "selection_used_outer_test_labels": false,
+  "protocol": "fixed lr=1e-5, lambda_morph=0.1 where enabled, lambda_reg=1e-4; prequential; per-case reset",
+  "models": {
+    "papagei": {
+      "source_only": {
+        "n": 25638,
+        "mae": 0.8453656345459384,
+        "rmse": 1.6708764505946663,
+        "bias": 0.13481013872887737,
+        "prediction_std": 0.4247439787109206,
+        "mean_case_mae": 0.9339089886577551
+      },
+      "train_median_constant": {
+        "n": 25638,
+        "mae": 0.5749278414852953,
+        "rmse": 1.7167148158478613,
+        "bias": 0.5749278414852953,
+        "prediction_std": 0.0,
+        "mean_case_mae": 0.6826946901987886
+      },
+      "consistency_only": {
+        "n": 25638,
+        "mae": 0.846130042266191,
+        "rmse": 1.6713134561548257,
+        "bias": 0.13499229669812707,
+        "prediction_std": 0.42649607067629464,
+        "mean_case_mae": 0.9348715174199521
+      },
+      "quality_gated_consistency": {
+        "n": 25638,
+        "mae": 0.8456495147997898,
+        "rmse": 1.6716078010208535,
+        "bias": 0.13513833720055968,
+        "prediction_std": 0.4259138197023181,
+        "mean_case_mae": 0.9341251933829521
+      },
+      "morphology_without_quality": {
+        "n": 25638,
+        "mae": 0.8455862873606195,
+        "rmse": 1.6709127401537482,
+        "bias": 0.13491584949834143,
+        "prediction_std": 0.42520086830234877,
+        "mean_case_mae": 0.9339288179310224
+      },
+      "full_qm": {
+        "n": 25638,
+        "mae": 0.8454385012451,
+        "rmse": 1.6705319569453505,
+        "bias": 0.1350314759810115,
+        "prediction_std": 0.42482356073098176,
+        "mean_case_mae": 0.9337019909016647
+      },
+      "paired_case_bootstrap_vs_source": {
+        "consistency_only": {
+          "mean_case_mae_improvement_vs_source": -0.000962528762197053,
+          "case_bootstrap_95ci": [
+            -0.0016184110220691956,
+            -0.0003088970359117403
+          ],
+          "cases": 23
+        },
+        "quality_gated_consistency": {
+          "mean_case_mae_improvement_vs_source": -0.0002162047251971053,
+          "case_bootstrap_95ci": [
+            -0.0007844281948589223,
+            0.0004336284485217925
+          ],
+          "cases": 23
+        },
+        "morphology_without_quality": {
+          "mean_case_mae_improvement_vs_source": -1.9829273267169956e-05,
+          "case_bootstrap_95ci": [
+            -0.0004781323906323317,
+            0.00045421606696370527
+          ],
+          "cases": 23
+        },
+        "full_qm": {
+          "mean_case_mae_improvement_vs_source": 0.0002069977560903001,
+          "case_bootstrap_95ci": [
+            -0.00026824436674454256,
+            0.0007144256625734891
+          ],
+          "cases": 23
+        }
+      },
+      "adaptation_diagnostics": {
+        "fold0_consistency_only": {
+          "batches": 1304,
+          "updated_batches": 1304,
+          "updated_samples": 5205,
+          "nonfinite_loss_batches": 0
+        },
+        "fold0_quality_gated_consistency": {
+          "batches": 1304,
+          "updated_batches": 1302,
+          "updated_samples": 5181,
+          "nonfinite_loss_batches": 0
+        },
+        "fold0_morphology_without_quality": {
+          "batches": 1304,
+          "updated_batches": 1304,
+          "updated_samples": 5205,
+          "nonfinite_loss_batches": 0
+        },
+        "fold0_full_qm": {
+          "batches": 1304,
+          "updated_batches": 1302,
+          "updated_samples": 5181,
+          "nonfinite_loss_batches": 0
+        },
+        "fold1_consistency_only": {
+          "batches": 1232,
+          "updated_batches": 1232,
+          "updated_samples": 4921,
+          "nonfinite_loss_batches": 0
+        },
+        "fold1_quality_gated_consistency": {
+          "batches": 1232,
+          "updated_batches": 1232,
+          "updated_samples": 4890,
+          "nonfinite_loss_batches": 0
+        },
+        "fold1_morphology_without_quality": {
+          "batches": 1232,
+          "updated_batches": 1232,
+          "updated_samples": 4921,
+          "nonfinite_loss_batches": 0
+        },
+        "fold1_full_qm": {
+          "batches": 1232,
+          "updated_batches": 1232,
+          "updated_samples": 4890,
+          "nonfinite_loss_batches": 0
+        },
+        "fold2_consistency_only": {
+          "batches": 1302,
+          "updated_batches": 1302,
+          "updated_samples": 5199,
+          "nonfinite_loss_batches": 0
+        },
+        "fold2_quality_gated_consistency": {
+          "batches": 1302,
+          "updated_batches": 1302,
+          "updated_samples": 5174,
+          "nonfinite_loss_batches": 0
+        },
+        "fold2_morphology_without_quality": {
+          "batches": 1302,
+          "updated_batches": 1302,
+          "updated_samples": 5199,
+          "nonfinite_loss_batches": 0
+        },
+        "fold2_full_qm": {
+          "batches": 1302,
+          "updated_batches": 1302,
+          "updated_samples": 5174,
+          "nonfinite_loss_batches": 0
+        },
+        "fold3_consistency_only": {
+          "batches": 1281,
+          "updated_batches": 1281,
+          "updated_samples": 5119,
+          "nonfinite_loss_batches": 0
+        },
+        "fold3_quality_gated_consistency": {
+          "batches": 1281,
+          "updated_batches": 1281,
+          "updated_samples": 5108,
+          "nonfinite_loss_batches": 0
+        },
+        "fold3_morphology_without_quality": {
+          "batches": 1281,
+          "updated_batches": 1281,
+          "updated_samples": 5119,
+          "nonfinite_loss_batches": 0
+        },
+        "fold3_full_qm": {
+          "batches": 1281,
+          "updated_batches": 1281,
+          "updated_samples": 5108,
+          "nonfinite_loss_batches": 0
+        },
+        "fold4_consistency_only": {
+          "batches": 1299,
+          "updated_batches": 1299,
+          "updated_samples": 5194,
+          "nonfinite_loss_batches": 0
+        },
+        "fold4_quality_gated_consistency": {
+          "batches": 1299,
+          "updated_batches": 1299,
+          "updated_samples": 5184,
+          "nonfinite_loss_batches": 0
+        },
+        "fold4_morphology_without_quality": {
+          "batches": 1299,
+          "updated_batches": 1299,
+          "updated_samples": 5194,
+          "nonfinite_loss_batches": 0
+        },
+        "fold4_full_qm": {
+          "batches": 1299,
+          "updated_batches": 1299,
+          "updated_samples": 5184,
+          "nonfinite_loss_batches": 0
+        }
+      }
+    },
+    "sigma": {
+      "source_only": {
+        "n": 12913,
+        "mae": 0.9243962829915984,
+        "rmse": 1.7808000499454895,
+        "bias": 0.13934901522637375,
+        "prediction_std": 0.7925790432693791,
+        "mean_case_mae": 1.033086114283709
+      },
+      "train_median_constant": {
+        "n": 12913,
+        "mae": 0.6103926275846047,
+        "rmse": 1.8954922540476116,
+        "bias": 0.6103926275846047,
+        "prediction_std": 0.0,
+        "mean_case_mae": 0.7651368463966628
+      },
+      "consistency_only": {
+        "n": 12913,
+        "mae": 0.9431893576089745,
+        "rmse": 1.7990170247342008,
+        "bias": 0.13593884189428176,
+        "prediction_std": 0.8208454022240965,
+        "mean_case_mae": 1.0535046352745434
+      },
+      "quality_gated_consistency": {
+        "n": 12913,
+        "mae": 0.9373641373397932,
+        "rmse": 1.7837176791346485,
+        "bias": 0.13639749417526184,
+        "prediction_std": 0.8167723401242748,
+        "mean_case_mae": 1.046726120721668
+      },
+      "morphology_without_quality": {
+        "n": 12913,
+        "mae": 0.9339536301884562,
+        "rmse": 1.7889914563215963,
+        "bias": 0.1355788707179249,
+        "prediction_std": 0.8020020581965341,
+        "mean_case_mae": 1.0424870697323636
+      },
+      "full_qm": {
+        "n": 12913,
+        "mae": 0.9304920226960975,
+        "rmse": 1.7877731992552046,
+        "bias": 0.13647538986211977,
+        "prediction_std": 0.8088668743519032,
+        "mean_case_mae": 1.0428725333266824
+      },
+      "paired_case_bootstrap_vs_source": {
+        "consistency_only": {
+          "mean_case_mae_improvement_vs_source": -0.020418520990834493,
+          "case_bootstrap_95ci": [
+            -0.028504507683722428,
+            -0.013166865239193484
+          ],
+          "cases": 23
+        },
+        "quality_gated_consistency": {
+          "mean_case_mae_improvement_vs_source": -0.013640006437959054,
+          "case_bootstrap_95ci": [
+            -0.02136565724080565,
+            -0.006547128226867022
+          ],
+          "cases": 23
+        },
+        "morphology_without_quality": {
+          "mean_case_mae_improvement_vs_source": -0.00940095544865491,
+          "case_bootstrap_95ci": [
+            -0.01343223959515687,
+            -0.005518064358099174
+          ],
+          "cases": 23
+        },
+        "full_qm": {
+          "mean_case_mae_improvement_vs_source": -0.00978641904297376,
+          "case_bootstrap_95ci": [
+            -0.015791851683404856,
+            -0.004771141418849281
+          ],
+          "cases": 23
+        }
+      },
+      "adaptation_diagnostics": {
+        "fold0_consistency_only": {
+          "batches": 658,
+          "updated_batches": 658,
+          "updated_samples": 2626,
+          "nonfinite_loss_batches": 0
+        },
+        "fold0_quality_gated_consistency": {
+          "batches": 658,
+          "updated_batches": 657,
+          "updated_samples": 2593,
+          "nonfinite_loss_batches": 0
+        },
+        "fold0_morphology_without_quality": {
+          "batches": 658,
+          "updated_batches": 658,
+          "updated_samples": 2626,
+          "nonfinite_loss_batches": 0
+        },
+        "fold0_full_qm": {
+          "batches": 658,
+          "updated_batches": 657,
+          "updated_samples": 2593,
+          "nonfinite_loss_batches": 0
+        },
+        "fold1_consistency_only": {
+          "batches": 624,
+          "updated_batches": 624,
+          "updated_samples": 2485,
+          "nonfinite_loss_batches": 0
+        },
+        "fold1_quality_gated_consistency": {
+          "batches": 624,
+          "updated_batches": 624,
+          "updated_samples": 2466,
+          "nonfinite_loss_batches": 0
+        },
+        "fold1_morphology_without_quality": {
+          "batches": 624,
+          "updated_batches": 624,
+          "updated_samples": 2485,
+          "nonfinite_loss_batches": 0
+        },
+        "fold1_full_qm": {
+          "batches": 624,
+          "updated_batches": 624,
+          "updated_samples": 2466,
+          "nonfinite_loss_batches": 0
+        },
+        "fold2_consistency_only": {
+          "batches": 655,
+          "updated_batches": 655,
+          "updated_samples": 2612,
+          "nonfinite_loss_batches": 0
+        },
+        "fold2_quality_gated_consistency": {
+          "batches": 655,
+          "updated_batches": 655,
+          "updated_samples": 2593,
+          "nonfinite_loss_batches": 0
+        },
+        "fold2_morphology_without_quality": {
+          "batches": 655,
+          "updated_batches": 655,
+          "updated_samples": 2612,
+          "nonfinite_loss_batches": 0
+        },
+        "fold2_full_qm": {
+          "batches": 655,
+          "updated_batches": 655,
+          "updated_samples": 2593,
+          "nonfinite_loss_batches": 0
+        },
+        "fold3_consistency_only": {
+          "batches": 647,
+          "updated_batches": 647,
+          "updated_samples": 2581,
+          "nonfinite_loss_batches": 0
+        },
+        "fold3_quality_gated_consistency": {
+          "batches": 647,
+          "updated_batches": 647,
+          "updated_samples": 2564,
+          "nonfinite_loss_batches": 0
+        },
+        "fold3_morphology_without_quality": {
+          "batches": 647,
+          "updated_batches": 647,
+          "updated_samples": 2581,
+          "nonfinite_loss_batches": 0
+        },
+        "fold3_full_qm": {
+          "batches": 647,
+          "updated_batches": 647,
+          "updated_samples": 2564,
+          "nonfinite_loss_batches": 0
+        },
+        "fold4_consistency_only": {
+          "batches": 653,
+          "updated_batches": 653,
+          "updated_samples": 2609,
+          "nonfinite_loss_batches": 0
+        },
+        "fold4_quality_gated_consistency": {
+          "batches": 653,
+          "updated_batches": 653,
+          "updated_samples": 2604,
+          "nonfinite_loss_batches": 0
+        },
+        "fold4_morphology_without_quality": {
+          "batches": 653,
+          "updated_batches": 653,
+          "updated_samples": 2609,
+          "nonfinite_loss_batches": 0
+        },
+        "fold4_full_qm": {
+          "batches": 653,
+          "updated_batches": 653,
+          "updated_samples": 2604,
+          "nonfinite_loss_batches": 0
+        }
+      }
+    }
+  }
+}

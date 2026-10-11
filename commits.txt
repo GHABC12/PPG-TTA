@@ -1,0 +1,3 @@
+SigmaPPG b1cc8d90da3878958b890c6e352cd3ae2a644005 (official upstream; local compatibility patch documented in third_party/SigmaPPG_PATCH.md)
+
+PaPaGei 0c537dad4d2850e15b724260de820dd68d77f0b0 (existing adjacent checkout; read-only)

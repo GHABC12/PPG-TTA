@@ -1,0 +1,369 @@
+{
+  "folds": 5,
+  "case_grouped": true,
+  "test_labels_used_for_selection": false,
+  "prediction_protocol": "prequential; score before current-batch update",
+  "validation_selection_note": "each outer fold selects only on its own validation fold; that fold also early-stops the source model",
+  "models": {
+    "papagei_lp": {
+      "selections": [
+        {
+          "fold": 0,
+          "selected": {
+            "name": "lr1e-05_m0.5",
+            "lr": 1e-05,
+            "lambda_morph": 0.5,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 0.5552222847482149,
+            "validation_window_mae": 0.5268979505706769,
+            "validation_prediction_std": 0.4011081237535303,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/lp/papagei_lp_outer0_lr1e-05_m0.5"
+          },
+          "validation_fold": 1,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 1,
+          "selected": {
+            "name": "lr1e-06_m0.5",
+            "lr": 1e-06,
+            "lambda_morph": 0.5,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 0.775504188150129,
+            "validation_window_mae": 0.7000302525524177,
+            "validation_prediction_std": 0.5562590361792474,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/lp/papagei_lp_outer1_lr1e-06_m0.5"
+          },
+          "validation_fold": 2,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 2,
+          "selected": {
+            "name": "no_update",
+            "lr": 1e-05,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 1.01,
+            "validation_mean_case_mae": 0.8352222571377702,
+            "validation_window_mae": 0.7715909406062471,
+            "validation_prediction_std": 0.34555609049645036,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/lp/papagei_lp_outer2_no_update"
+          },
+          "validation_fold": 3,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 3,
+          "selected": {
+            "name": "no_update",
+            "lr": 1e-05,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 1.01,
+            "validation_mean_case_mae": 1.2915207691031285,
+            "validation_window_mae": 1.060384430883479,
+            "validation_prediction_std": 0.2450602267310773,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/lp/papagei_lp_outer3_no_update"
+          },
+          "validation_fold": 4,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 4,
+          "selected": {
+            "name": "lr1e-06_m0",
+            "lr": 1e-06,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 0.8355000065399454,
+            "validation_window_mae": 0.7699947888523655,
+            "validation_prediction_std": 0.33393477558875184,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/lp/papagei_lp_outer4_lr1e-06_m0"
+          },
+          "validation_fold": 0,
+          "validation_reused_for_source_early_stopping": true
+        }
+      ],
+      "oof_predictions": 25638,
+      "oof_mean_case_mae": {
+        "source_only": 0.9339089886577551,
+        "validation_selected_tta": 0.9339509817241046,
+        "train_median_constant": 0.6826946901987886
+      }
+    },
+    "papagei_finetune": {
+      "selections": [
+        {
+          "fold": 0,
+          "selected": {
+            "name": "lr1e-05_m0.5",
+            "lr": 1e-05,
+            "lambda_morph": 0.5,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 0.5234747378355153,
+            "validation_window_mae": 0.4981382975028894,
+            "validation_prediction_std": 0.48398860605293575,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/finetune/papagei_finetune_outer0_lr1e-05_m0.5"
+          },
+          "validation_fold": 1,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 1,
+          "selected": {
+            "name": "lr1e-05_m0.5",
+            "lr": 1e-05,
+            "lambda_morph": 0.5,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 0.7458541523229087,
+            "validation_window_mae": 0.654331222683862,
+            "validation_prediction_std": 0.4479325973160938,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/finetune/papagei_finetune_outer1_lr1e-05_m0.5"
+          },
+          "validation_fold": 2,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 2,
+          "selected": {
+            "name": "no_update",
+            "lr": 1e-05,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 1.01,
+            "validation_mean_case_mae": 0.8209101030589739,
+            "validation_window_mae": 0.7587387493332515,
+            "validation_prediction_std": 0.30713068811465427,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/finetune/papagei_finetune_outer2_no_update"
+          },
+          "validation_fold": 3,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 3,
+          "selected": {
+            "name": "no_update",
+            "lr": 1e-05,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 1.01,
+            "validation_mean_case_mae": 1.2875403073420064,
+            "validation_window_mae": 1.0457589359158592,
+            "validation_prediction_std": 0.20471413072142583,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/finetune/papagei_finetune_outer3_no_update"
+          },
+          "validation_fold": 4,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 4,
+          "selected": {
+            "name": "lr1e-05_m0.5",
+            "lr": 1e-05,
+            "lambda_morph": 0.5,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 0.8233117085008,
+            "validation_window_mae": 0.7291616712821205,
+            "validation_prediction_std": 0.367617203958109,
+            "run_dir": "results/vitaldb_pilot/tta_tuning/finetune/papagei_finetune_outer4_lr1e-05_m0.5"
+          },
+          "validation_fold": 0,
+          "validation_reused_for_source_early_stopping": true
+        }
+      ],
+      "oof_predictions": 25638,
+      "oof_mean_case_mae": {
+        "source_only": 0.9010540964412774,
+        "validation_selected_tta": 0.9009722559397393,
+        "train_median_constant": 0.6826946901987886
+      }
+    },
+    "sigma_lp": {
+      "selections": [
+        {
+          "fold": 0,
+          "selected": {
+            "name": "no_update",
+            "lr": 1e-05,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 1.01,
+            "validation_mean_case_mae": 0.7675472236200755,
+            "validation_window_mae": 0.8332141131702323,
+            "validation_prediction_std": 1.36600798061407,
+            "run_dir": "results/vitaldb_sigma/tta_tuning/lp/sigma_lp_outer0_no_update"
+          },
+          "validation_fold": 1,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 1,
+          "selected": {
+            "name": "no_update",
+            "lr": 1e-05,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 1.01,
+            "validation_mean_case_mae": 0.8701368605510911,
+            "validation_window_mae": 0.7586565587275974,
+            "validation_prediction_std": 0.8802543485841894,
+            "run_dir": "results/vitaldb_sigma/tta_tuning/lp/sigma_lp_outer1_no_update"
+          },
+          "validation_fold": 2,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 2,
+          "selected": {
+            "name": "no_update",
+            "lr": 1e-05,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 1.01,
+            "validation_mean_case_mae": 0.9643045589617151,
+            "validation_window_mae": 0.8243640986859729,
+            "validation_prediction_std": 0.667309452183543,
+            "run_dir": "results/vitaldb_sigma/tta_tuning/lp/sigma_lp_outer2_no_update"
+          },
+          "validation_fold": 3,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 3,
+          "selected": {
+            "name": "lr1e-05_m0.1",
+            "lr": 1e-05,
+            "lambda_morph": 0.1,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 1.3317488088805196,
+            "validation_window_mae": 1.0815729775068723,
+            "validation_prediction_std": 0.31412174814362803,
+            "run_dir": "results/vitaldb_sigma/tta_tuning/lp/sigma_lp_outer3_lr1e-05_m0.1"
+          },
+          "validation_fold": 4,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 4,
+          "selected": {
+            "name": "lr1e-05_m0.5",
+            "lr": 1e-05,
+            "lambda_morph": 0.5,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 0.9188172765455582,
+            "validation_window_mae": 0.7771201500525842,
+            "validation_prediction_std": 0.6434902105168232,
+            "run_dir": "results/vitaldb_sigma/tta_tuning/lp/sigma_lp_outer4_lr1e-05_m0.5"
+          },
+          "validation_fold": 0,
+          "validation_reused_for_source_early_stopping": true
+        }
+      ],
+      "oof_predictions": 12913,
+      "oof_mean_case_mae": {
+        "source_only": 1.033086114283709,
+        "validation_selected_tta": 1.0336993308329065,
+        "train_median_constant": 0.7651368463966628
+      }
+    },
+    "sigma_finetune": {
+      "selections": [
+        {
+          "fold": 0,
+          "selected": {
+            "name": "no_update",
+            "lr": 1e-05,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 1.01,
+            "validation_mean_case_mae": 0.6550533171694597,
+            "validation_window_mae": 0.711454579527949,
+            "validation_prediction_std": 1.2425768692511923,
+            "run_dir": "results/vitaldb_sigma/tta_tuning/finetune/sigma_finetune_outer0_no_update"
+          },
+          "validation_fold": 1,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 1,
+          "selected": {
+            "name": "no_update",
+            "lr": 1e-05,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 1.01,
+            "validation_mean_case_mae": 0.8262397125489986,
+            "validation_window_mae": 0.7251823565496237,
+            "validation_prediction_std": 0.6128119789393551,
+            "run_dir": "results/vitaldb_sigma/tta_tuning/finetune/sigma_finetune_outer1_no_update"
+          },
+          "validation_fold": 2,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 2,
+          "selected": {
+            "name": "lr1e-05_m0",
+            "lr": 1e-05,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 0.9674947881128553,
+            "validation_window_mae": 0.8490799405416838,
+            "validation_prediction_std": 0.7779458580176499,
+            "run_dir": "results/vitaldb_sigma/tta_tuning/finetune/sigma_finetune_outer2_lr1e-05_m0"
+          },
+          "validation_fold": 3,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 3,
+          "selected": {
+            "name": "lr1e-05_m0.5",
+            "lr": 1e-05,
+            "lambda_morph": 0.5,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 1.322051415749928,
+            "validation_window_mae": 1.0606268008763235,
+            "validation_prediction_std": 0.2742531249638879,
+            "run_dir": "results/vitaldb_sigma/tta_tuning/finetune/sigma_finetune_outer3_lr1e-05_m0.5"
+          },
+          "validation_fold": 4,
+          "validation_reused_for_source_early_stopping": true
+        },
+        {
+          "fold": 4,
+          "selected": {
+            "name": "lr1e-06_m0",
+            "lr": 1e-06,
+            "lambda_morph": 0.0,
+            "lambda_reg": 0.0001,
+            "quality_threshold": 0.5,
+            "validation_mean_case_mae": 0.932549267757864,
+            "validation_window_mae": 0.7581826738065558,
+            "validation_prediction_std": 0.40423873438794117,
+            "run_dir": "results/vitaldb_sigma/tta_tuning/finetune/sigma_finetune_outer4_lr1e-06_m0"
+          },
+          "validation_fold": 0,
+          "validation_reused_for_source_early_stopping": true
+        }
+      ],
+      "oof_predictions": 12913,
+      "oof_mean_case_mae": {
+        "source_only": 1.0160076512535576,
+        "validation_selected_tta": 1.0181083519200815,
+        "train_median_constant": 0.7651368463966628
+      }
+    }
+  }
+}

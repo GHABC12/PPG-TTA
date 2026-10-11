@@ -1,0 +1,6 @@
+Python 3.10.16
+PyTorch 2.1.2+cu118
+CUDA available: True
+GPU: NVIDIA GeForce RTX 3090 (24 GB)
+NumPy 1.26.4; SciPy 1.13.1; pandas 2.2.3; timm 0.9.16; vitaldb available
+Existing PaPaGei conda environment reused. Installed SIGMA required dependency timm==0.9.16.

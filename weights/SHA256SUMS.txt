@@ -1,0 +1,4 @@
+b185072e04a2c7e0ce99dbbe96a241d0150a99f7b1c49414749ba3b1b404b68b  sigma.pth
+Source: https://huggingface.co/zonhengu/sigmappg (downloaded from Hugging Face mirror endpoint)
+Size: 363228975 bytes
+

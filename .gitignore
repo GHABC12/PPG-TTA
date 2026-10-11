@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+
+# VitalDB waveform extracts, caches, and generated per-case output
+/data/
+/results/vitaldb_pilot/
+/results/vitaldb_sigma/
+/results/tta_ablation/
+/results/*.npz
+/results/*.pt
+
+# Pretrained and fine-tuned model weights are fetched/generated separately.
+/weights/*.pt
+/weights/*.pth
+/weights/*.ckpt
