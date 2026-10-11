@@ -8,6 +8,7 @@ __pycache__/
 /results/tta_ablation/
 /results/*.npz
 /results/*.pt
+/results/phase2/window_matrix/**/embeddings_papagei.npz
 
 # Pretrained and fine-tuned model weights are fetched/generated separately.
 /weights/*.pt

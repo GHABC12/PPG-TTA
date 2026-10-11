@@ -1,0 +1,27 @@
+{
+  "dataset": "existing VitalDB only",
+  "representation": "frozen PaPaGei; 512 dimensions; same fixed case folds across windows",
+  "window_counts": {
+    "10": 25638,
+    "30": 8438,
+    "60": 4165
+  },
+  "selection": "for each outer test fold, next fold selects checkpoint epoch by case-equal MAE; case-equal training weights; outer metric is case-equal MAE",
+  "head_grid_cells": 27,
+  "device": "cuda",
+  "epochs_max": 120,
+  "early_stop_patience": 12,
+  "best_exploratory_cell": {
+    "window_s": 60,
+    "head": "mlp",
+    "loss": "mae",
+    "case_mean_mae": 0.6892253518104553,
+    "case_mae_sd": 0.3854976377433314,
+    "window_mae": 0.6474302351474762,
+    "window_rmse": 1.2203884518975883,
+    "window_r2": -0.2814457654953003,
+    "median_baseline_case_mae": 0.5052976578474044,
+    "best_epoch_mean": 37.4
+  },
+  "all_cells_are_exploratory_after_model_selection": true
+}

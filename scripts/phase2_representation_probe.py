@@ -66,6 +66,15 @@ def evaluate(x: np.ndarray, index: pd.DataFrame, model_name: str, max_per_case: 
             model = RandomForestRegressor(n_estimators=80, max_features=0.3, min_samples_leaf=10,
                                           n_jobs=1, random_state=2026).fit(x[fit], y[fit])
             params = {"n_estimators": 80, "max_features": 0.3, "min_samples_leaf": 10, "n_jobs": 1}
+        elif model_name == "lgbm":
+            from lightgbm import LGBMRegressor
+            model = LGBMRegressor(n_estimators=300, num_leaves=16, learning_rate=0.03,
+                                  max_depth=-1, subsample=0.8, colsample_bytree=0.8,
+                                  reg_lambda=10.0, min_child_samples=20, n_jobs=1,
+                                  random_state=2026, verbosity=-1).fit(x[fit], y[fit])
+            params = {"n_estimators": 300, "num_leaves": 16, "learning_rate": 0.03,
+                      "max_depth": -1, "subsample": 0.8, "colsample_bytree": 0.8,
+                      "reg_lambda": 10.0, "min_child_samples": 20, "n_jobs": 1}
         else:
             from xgboost import XGBRegressor
             model = XGBRegressor(n_estimators=250, max_depth=4, learning_rate=0.03,
@@ -125,7 +134,7 @@ def main() -> None:
     ap.add_argument("--index", required=True)
     ap.add_argument("--embeddings", required=True)
     ap.add_argument("--out-dir", required=True)
-    ap.add_argument("--models", nargs="+", choices=("ridge", "rf", "xgb"), default=("ridge", "xgb"))
+    ap.add_argument("--models", nargs="+", choices=("ridge", "rf", "xgb", "lgbm"), default=("ridge", "xgb", "lgbm"))
     ap.add_argument("--max-train-windows-per-case", type=int, default=250)
     args = ap.parse_args()
     out = Path(args.out_dir)

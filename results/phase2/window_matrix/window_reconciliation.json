@@ -1,0 +1,232 @@
+{
+  "old_index_windows": 25638,
+  "new_10s_quality_filtered_windows": 25638,
+  "10s_label_eligible_windows_before_ppg_qc": 25645,
+  "10s_label_eligible_but_rejected_by_ppg_qc": [
+    {
+      "case_id": 834,
+      "start_s": 2880
+    },
+    {
+      "case_id": 834,
+      "start_s": 2890
+    },
+    {
+      "case_id": 834,
+      "start_s": 2950
+    },
+    {
+      "case_id": 834,
+      "start_s": 2960
+    },
+    {
+      "case_id": 834,
+      "start_s": 3020
+    },
+    {
+      "case_id": 834,
+      "start_s": 3030
+    },
+    {
+      "case_id": 5277,
+      "start_s": 0
+    }
+  ],
+  "old_not_recreated": [],
+  "new_not_in_old": [],
+  "rejections_by_window_s_and_reason": {
+    "10s::ppg_missing_over_1pct": 7,
+    "10s::spo2_coverage": 1671,
+    "30s::ppg_missing_over_1pct": 4,
+    "30s::spo2_coverage": 655,
+    "60s::ppg_missing_over_1pct": 3,
+    "60s::spo2_coverage": 375
+  },
+  "track_sampling_lengths": [
+    {
+      "case_id": 1,
+      "ppg_n": 1442539,
+      "spo2_n": 11541,
+      "ppg_duration_s": 11540.312,
+      "spo2_duration_s": 11541,
+      "duration_difference_s": -0.6880000000001019
+    },
+    {
+      "case_id": 278,
+      "ppg_n": 759250,
+      "spo2_n": 6074,
+      "ppg_duration_s": 6074.0,
+      "spo2_duration_s": 6074,
+      "duration_difference_s": 0.0
+    },
+    {
+      "case_id": 556,
+      "ppg_n": 661375,
+      "spo2_n": 5291,
+      "ppg_duration_s": 5291.0,
+      "spo2_duration_s": 5291,
+      "duration_difference_s": 0.0
+    },
+    {
+      "case_id": 834,
+      "ppg_n": 614408,
+      "spo2_n": 4916,
+      "ppg_duration_s": 4915.264,
+      "spo2_duration_s": 4916,
+      "duration_difference_s": -0.7359999999998763
+    },
+    {
+      "case_id": 1111,
+      "ppg_n": 968365,
+      "spo2_n": 7747,
+      "ppg_duration_s": 7746.92,
+      "spo2_duration_s": 7747,
+      "duration_difference_s": -0.07999999999992724
+    },
+    {
+      "case_id": 1389,
+      "ppg_n": 1945464,
+      "spo2_n": 15564,
+      "ppg_duration_s": 15563.712,
+      "spo2_duration_s": 15564,
+      "duration_difference_s": -0.28800000000046566
+    },
+    {
+      "case_id": 1667,
+      "ppg_n": 1963518,
+      "spo2_n": 15709,
+      "ppg_duration_s": 15708.144,
+      "spo2_duration_s": 15709,
+      "duration_difference_s": -0.8559999999997672
+    },
+    {
+      "case_id": 1944,
+      "ppg_n": 2153366,
+      "spo2_n": 17227,
+      "ppg_duration_s": 17226.928,
+      "spo2_duration_s": 17227,
+      "duration_difference_s": -0.07200000000011642
+    },
+    {
+      "case_id": 2222,
+      "ppg_n": 1672401,
+      "spo2_n": 13380,
+      "ppg_duration_s": 13379.208,
+      "spo2_duration_s": 13380,
+      "duration_difference_s": -0.7919999999994616
+    },
+    {
+      "case_id": 2500,
+      "ppg_n": 663428,
+      "spo2_n": 5308,
+      "ppg_duration_s": 5307.424,
+      "spo2_duration_s": 5308,
+      "duration_difference_s": -0.5760000000000218
+    },
+    {
+      "case_id": 2777,
+      "ppg_n": 909155,
+      "spo2_n": 7274,
+      "ppg_duration_s": 7273.24,
+      "spo2_duration_s": 7274,
+      "duration_difference_s": -0.7600000000002183
+    },
+    {
+      "case_id": 3055,
+      "ppg_n": 648850,
+      "spo2_n": 5191,
+      "ppg_duration_s": 5190.8,
+      "spo2_duration_s": 5191,
+      "duration_difference_s": -0.1999999999998181
+    },
+    {
+      "case_id": 3333,
+      "ppg_n": 894050,
+      "spo2_n": 7153,
+      "ppg_duration_s": 7152.4,
+      "spo2_duration_s": 7153,
+      "duration_difference_s": -0.6000000000003638
+    },
+    {
+      "case_id": 3611,
+      "ppg_n": 911865,
+      "spo2_n": 7295,
+      "ppg_duration_s": 7294.92,
+      "spo2_duration_s": 7295,
+      "duration_difference_s": -0.07999999999992724
+    },
+    {
+      "case_id": 3888,
+      "ppg_n": 2109244,
+      "spo2_n": 16874,
+      "ppg_duration_s": 16873.952,
+      "spo2_duration_s": 16874,
+      "duration_difference_s": -0.04799999999886495
+    },
+    {
+      "case_id": 4166,
+      "ppg_n": 3822933,
+      "spo2_n": 30584,
+      "ppg_duration_s": 30583.464,
+      "spo2_duration_s": 30584,
+      "duration_difference_s": -0.5360000000000582
+    },
+    {
+      "case_id": 4444,
+      "ppg_n": 389990,
+      "spo2_n": 3120,
+      "ppg_duration_s": 3119.92,
+      "spo2_duration_s": 3120,
+      "duration_difference_s": -0.07999999999992724
+    },
+    {
+      "case_id": 4999,
+      "ppg_n": 3130946,
+      "spo2_n": 25048,
+      "ppg_duration_s": 25047.568,
+      "spo2_duration_s": 25048,
+      "duration_difference_s": -0.4320000000006985
+    },
+    {
+      "case_id": 5277,
+      "ppg_n": 2389513,
+      "spo2_n": 19117,
+      "ppg_duration_s": 19116.104,
+      "spo2_duration_s": 19117,
+      "duration_difference_s": -0.8960000000006403
+    },
+    {
+      "case_id": 5554,
+      "ppg_n": 536850,
+      "spo2_n": 4295,
+      "ppg_duration_s": 4294.8,
+      "spo2_duration_s": 4295,
+      "duration_difference_s": -0.1999999999998181
+    },
+    {
+      "case_id": 5832,
+      "ppg_n": 2461253,
+      "spo2_n": 19691,
+      "ppg_duration_s": 19690.024,
+      "spo2_duration_s": 19691,
+      "duration_difference_s": -0.9759999999987485
+    },
+    {
+      "case_id": 6110,
+      "ppg_n": 1829989,
+      "spo2_n": 14640,
+      "ppg_duration_s": 14639.912,
+      "spo2_duration_s": 14640,
+      "duration_difference_s": -0.08799999999973807
+    },
+    {
+      "case_id": 6388,
+      "ppg_n": 1280849,
+      "spo2_n": 10247,
+      "ppg_duration_s": 10246.792,
+      "spo2_duration_s": 10247,
+      "duration_difference_s": -0.20800000000053842
+    }
+  ],
+  "notes": "New 10s windows use the exact project PPG QC and 50% SpO2 rule. The old 10s rule min 5 is equivalent to 50%. Compare key differences before treating them as a cache-only discrepancy."
+}

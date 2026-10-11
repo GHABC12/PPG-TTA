@@ -10,6 +10,8 @@
 
 本轮数据为 23 个病例、25,638 个已有 10 秒窗口、512 维冻结 PaPaGei 表征。新增计算结果均写入本目录；原始 VitalDB 文件和模型缓存不纳入 Git。
 
+按后续执行方案又建立了 10/30/60 秒统一窗口矩阵（25,638 / 8,438 / 4,165 窗口），固定沿用同一张病例折分配表；每个窗口要求至少 50% SpO2 有效点。三个窗口长度均提取了 512 维冻结 PaPaGei 表征。
+
 ## 关键发现
 
 ### SpO2 表征探针
@@ -18,9 +20,11 @@
 |---|---:|---:|---:|---:|
 | Ridge，验证集选择 alpha | 1.074 | 1.010 | -0.407 | -0.009 |
 | XGBoost，固定配置 | 1.006 | 0.926 | -0.453 | 0.067 |
+| LightGBM，固定配置 | 1.035 | 0.952 | -0.582 | 0.067 |
+| 10 秒 MLP+MAE，head grid | 0.803 | 0.720 | -0.241 | — |
 | 训练集 SpO2 中位数基线（已有结果） | 0.683 | — | — | — |
 
-病例级平均绝对误差与现有基线采用相同聚合口径。两个冻结表征探针都没有超过中位数基线；窗口级相关性也很弱。当前不扩大 SpO2 TTA 搜索。
+病例级平均绝对误差与现有基线采用相同聚合口径。Ridge、XGBoost、LightGBM 和 MLP 都没有超过 0.683 中位数基线；窗口级相关性也较弱。当前不扩大 SpO2 TTA 搜索。Ridge/XGBoost/LightGBM 使用最多每病例 250 个训练窗口；MLP 使用完整训练窗、病例等权并按验证病例 MAE 早停，具体设置见各结果文件。
 
 病例均值嵌入的 PCA 前两主成分解释 82.4% 和 6.8% 方差；PC1 与病例中位 SpO2 的 Spearman 相关为 0.537。该分析只有 23 个病例，属于探索性描述，不能说明窗口级可预测性。PCA/t-SNE 图见 `representation/`。
 
@@ -47,16 +51,31 @@ HR 探针明显优于常数中位数基线；呼吸率只在病例 MAE 上略有
 
 旧规则“至少 5 个点”对 30/60 秒窗口明显更宽松，比较不同窗口时必须改用统一覆盖率。重算的 10 秒有效标签窗口为 25,646 个，与已有 embedding 索引 25,638 个相差 8 个；继续训练长窗口模型前需先确认这 8 个窗口来自边界或缓存筛选差异。
 
+### 10 秒窗口差异复核
+
+重建索引逐病例与原索引完全一致（25,638 个，旧索引缺失/新索引新增均为 0）。coverage-only 计算的 25,646 与最终索引相差 8：病例 834 的 6 个窗口（2880、2890、2950、2960、3020、3030 秒）及病例 5277 的 1 个窗口（0 秒）PPG 缺失率超过 1%，按现行 PPG QC 拒绝；剩下病例 4444 的 3110–3120 秒窗口被完整秒截断规则排除，因为 PPG 长度为 3119.92 秒，而 SpO2 长度为 3120 秒。该尾部不足 0.08 秒，按严格共同有效时长处理时不纳入索引。`window_reconciliation.json` 保存了逐窗拒绝原因和轨道时长。
+
+### 输入通道核对
+
+当前 VitalDB pipeline 只读取 `SNUADC/PLETH`，PaPaGei 配置为单输入通道。已盘点的病例轨道名未发现独立 Red/IR 光学通道；处理时又做 0.5–12 Hz 带通及逐窗 z-score，绝对 DC 与跨通道 AC/DC 比值信息均未保留。因此本阶段数据不足以实现双波长 ratio-of-ratios SpO2 算法。`Solar8000/PLETH_SPO2` 是监护仪标签，不能当作 Red/IR 输入信号。
+
+### 统一基线矩阵
+
+在三个窗口长度上对 Linear、MLP、Residual MLP 与 MSE、MAE、Huber 组合做了 27 组比较；五折病例划分一致，外折测试、下一折按病例均值 MAE 早停选 epoch，训练样本按病例等权。最优单元是 60 秒 MLP+MAE，病例均值 MAE 0.689；对应 60 秒训练中位数基线为 0.505。按窗口长度各自选择的最好单元为：10 秒 MLP+MAE 0.803（中位数 0.660），30 秒 MLP+MAE 0.733（中位数 0.541），60 秒 MLP+MAE 0.689（中位数 0.505）。三个长度都未超过各自的中位数基线；60 秒结果也略差于先前报告的 0.683 门槛，且 27 组择优会带来选择偏差。因此继续暂停扩大 SpO2 TTA，以上是探索性基线而非最终模型结论。完整折指标和配置见 `head_grid/`。
+
+### 特征相关性与嵌入图
+
+对每个窗口长度的 512 个特征计算了 SpO2 Pearson/Spearman 相关，10 秒窗口也计算了 HR 相关；关联结果以逐窗描述统计呈现，窗口在同病例内不独立。PCA、t-SNE 图按病例平衡抽样（每病例最多 60 窗口），颜色分别表示病例、SpO2 和可用的 HR。UMAP 所需 numba/llvmlite 轮子下载速度低于约 22 KB/s，在约 16 MB 下载后停止；因此本次未生成 UMAP 图，已在分析 JSON 中记录。UMAP 是本阶段唯一未完成的可视化项。
+
 ## 当前决策与后续
 
 既有外层 OOF 结果中，最佳 LN+Head 策略病例 MAE 为 0.904，训练病例中位数基线为 0.683；Phase 2 的 SpO2 冻结表征探针也未推翻该比较。因此按研究计划继续暂缓扩大 SpO2 TTA。可把 HR 作为迁移探针的优先任务；呼吸率只保留为探索性任务。当前 SQI 标签不适用于 PPG 质量监督。
 
 下一步优先事项：
 
-1. 对齐并解释 10 秒索引与重算标签间的 8 个窗口差异。
-2. 核对 HR/呼吸率轨道的记录间隔与测量来源，检查病例级分布和训练/测试折差异。
-3. 在统一标签覆盖规则下，按研究计划决定是否提取 30/60 秒表征并与 10 秒结果比较。
-4. 只有 SpO2 基线在病例级指标上稳定超过中位数基线后，再恢复 SpO2 TTA 扩展。
+1. 视研究需要补做 UMAP 可视化（无需新增数据集）。
+2. 核对 HR/呼吸率轨道的记录间隔与测量来源，并检查病例级分布和折间差异。
+3. 只有 SpO2 基线在病例级指标上稳定超过中位数基线后，再恢复 SpO2 TTA 扩展。
 
 执行记录：随机森林探针在单线程训练阶段耗时过长，本轮中止，没有将其作为结果；XGBoost 早期一次运行因训练与预测预处理不一致而作废，修正后结果已重跑并写入正式摘要。
 
@@ -66,9 +85,14 @@ HR 探针明显优于常数中位数基线；呼吸率只在病例 MAE 上略有
 - 脚本：`scripts/audit_phase2_vital_tracks.py`
 - 脚本：`scripts/audit_phase2_window_coverage.py`
 - 脚本：`scripts/phase2_transfer_probes.py`
+- 脚本：`scripts/prepare_phase2_window_matrix.py`
+- 脚本：`scripts/phase2_window_head_grid.py`
+- 脚本：`scripts/phase2_feature_diagnostics.py`
 - 结果：`representation/probe_summary.json`、`representation/probe_fold_metrics.csv`
 - 图表：`representation/case_centroid_pca.png`、`representation/case_centroid_tsne.png`
 - 结果：`transferability/track_audit_summary.json`、`transferability/track_availability_by_case.csv`
 - 结果：`transferability/timestamp_alignment_sample.csv`、`transferability/transfer_probe_summary.json`
 - 标签窗口明细：`transferability/transfer_window_labels.csv`
 - 结果：`label_coverage/window_coverage_summary.json`、`label_coverage/window_coverage_by_case.csv`
+- 窗口与折：`window_matrix/`；特征统计和 PCA/t-SNE 图：`feature_diagnostics/`
+- 27 组基线：`head_grid/head_grid_summary.csv`、`head_grid/head_grid_fold_metrics.csv`

@@ -1,0 +1,398 @@
+{
+  "data": "existing VitalDB only",
+  "feature_correlations": "descriptive window-level Pearson/Spearman; windows within cases are dependent",
+  "visual_sampling": "up to 60 windows per case",
+  "projections": {
+    "10": {
+      "windows": 25638,
+      "cases": 23,
+      "plotted_windows": 1380,
+      "pca_explained_variance_ratio": [
+        0.5265016918830564,
+        0.13615688903516135
+      ],
+      "feature_correlations": {
+        "HR": {
+          "pearson_top10": [
+            {
+              "feature": "feature_299",
+              "pearson_r": 0.4565279795205755
+            },
+            {
+              "feature": "feature_222",
+              "pearson_r": 0.4119096624234793
+            },
+            {
+              "feature": "feature_219",
+              "pearson_r": 0.40974258746791625
+            },
+            {
+              "feature": "feature_297",
+              "pearson_r": 0.35852441361325615
+            },
+            {
+              "feature": "feature_323",
+              "pearson_r": -0.3411786846856796
+            },
+            {
+              "feature": "feature_315",
+              "pearson_r": 0.3373748201003838
+            },
+            {
+              "feature": "feature_261",
+              "pearson_r": 0.33663557316652204
+            },
+            {
+              "feature": "feature_203",
+              "pearson_r": -0.3265600137594977
+            },
+            {
+              "feature": "feature_218",
+              "pearson_r": 0.30213913682607224
+            },
+            {
+              "feature": "feature_305",
+              "pearson_r": 0.30200837679537484
+            }
+          ],
+          "spearman_top10": [
+            {
+              "feature": "feature_299",
+              "spearman_r": 0.5184256477336295
+            },
+            {
+              "feature": "feature_219",
+              "spearman_r": 0.4231328535896917
+            },
+            {
+              "feature": "feature_222",
+              "spearman_r": 0.41917205765651716
+            },
+            {
+              "feature": "feature_203",
+              "spearman_r": -0.4080881471134276
+            },
+            {
+              "feature": "feature_297",
+              "spearman_r": 0.4012262812747161
+            },
+            {
+              "feature": "feature_315",
+              "spearman_r": 0.3721107486607654
+            },
+            {
+              "feature": "feature_199",
+              "spearman_r": -0.3531267414890824
+            },
+            {
+              "feature": "feature_239",
+              "spearman_r": 0.33792598303220445
+            },
+            {
+              "feature": "feature_323",
+              "spearman_r": -0.3287307196498284
+            },
+            {
+              "feature": "feature_208",
+              "spearman_r": 0.30192589057157315
+            }
+          ]
+        },
+        "SpO2": {
+          "pearson_top10": [
+            {
+              "feature": "feature_320",
+              "pearson_r": -0.10850052279504804
+            },
+            {
+              "feature": "feature_226",
+              "pearson_r": -0.10244683979150024
+            },
+            {
+              "feature": "feature_240",
+              "pearson_r": -0.10151910711422654
+            },
+            {
+              "feature": "feature_030",
+              "pearson_r": -0.09987845427272722
+            },
+            {
+              "feature": "feature_308",
+              "pearson_r": -0.09651742583117225
+            },
+            {
+              "feature": "feature_361",
+              "pearson_r": -0.09450821441322181
+            },
+            {
+              "feature": "feature_203",
+              "pearson_r": -0.09406310152554073
+            },
+            {
+              "feature": "feature_027",
+              "pearson_r": -0.09157509159461416
+            },
+            {
+              "feature": "feature_196",
+              "pearson_r": -0.09077169725017838
+            },
+            {
+              "feature": "feature_158",
+              "pearson_r": -0.08967646282100156
+            }
+          ],
+          "spearman_top10": [
+            {
+              "feature": "feature_226",
+              "spearman_r": -0.15055337909652958
+            },
+            {
+              "feature": "feature_240",
+              "spearman_r": -0.13384411528502604
+            },
+            {
+              "feature": "feature_227",
+              "spearman_r": -0.12948259022817846
+            },
+            {
+              "feature": "feature_030",
+              "spearman_r": -0.1292974113791957
+            },
+            {
+              "feature": "feature_218",
+              "spearman_r": -0.12539314847286698
+            },
+            {
+              "feature": "feature_046",
+              "spearman_r": -0.12195173566232573
+            },
+            {
+              "feature": "feature_252",
+              "spearman_r": -0.1196157897944951
+            },
+            {
+              "feature": "feature_045",
+              "spearman_r": -0.11869876317172029
+            },
+            {
+              "feature": "feature_058",
+              "spearman_r": -0.11798291234717219
+            },
+            {
+              "feature": "feature_361",
+              "spearman_r": -0.11706040316706769
+            }
+          ]
+        }
+      },
+      "available_projections": [
+        "pca",
+        "tsne"
+      ]
+    },
+    "30": {
+      "windows": 8438,
+      "cases": 23,
+      "plotted_windows": 1380,
+      "pca_explained_variance_ratio": [
+        0.5359626725614864,
+        0.10756813626601358
+      ],
+      "feature_correlations": {
+        "SpO2": {
+          "pearson_top10": [
+            {
+              "feature": "feature_034",
+              "pearson_r": 0.13192839154430544
+            },
+            {
+              "feature": "feature_421",
+              "pearson_r": 0.13133766882594333
+            },
+            {
+              "feature": "feature_149",
+              "pearson_r": 0.12863897046608938
+            },
+            {
+              "feature": "feature_198",
+              "pearson_r": 0.12432794466317577
+            },
+            {
+              "feature": "feature_440",
+              "pearson_r": 0.1235190207800829
+            },
+            {
+              "feature": "feature_040",
+              "pearson_r": 0.12216403115655257
+            },
+            {
+              "feature": "feature_167",
+              "pearson_r": 0.11926015860806233
+            },
+            {
+              "feature": "feature_267",
+              "pearson_r": 0.11916896919125149
+            },
+            {
+              "feature": "feature_488",
+              "pearson_r": 0.11866279359310583
+            },
+            {
+              "feature": "feature_097",
+              "pearson_r": 0.11666801438522989
+            }
+          ],
+          "spearman_top10": [
+            {
+              "feature": "feature_421",
+              "spearman_r": 0.26075560845390716
+            },
+            {
+              "feature": "feature_199",
+              "spearman_r": 0.2517881408012937
+            },
+            {
+              "feature": "feature_047",
+              "spearman_r": 0.23842656197058112
+            },
+            {
+              "feature": "feature_225",
+              "spearman_r": 0.23695736355581956
+            },
+            {
+              "feature": "feature_139",
+              "spearman_r": 0.2338069190256309
+            },
+            {
+              "feature": "feature_188",
+              "spearman_r": 0.23176405911970638
+            },
+            {
+              "feature": "feature_097",
+              "spearman_r": 0.22837268401030475
+            },
+            {
+              "feature": "feature_389",
+              "spearman_r": 0.22793566815914848
+            },
+            {
+              "feature": "feature_260",
+              "spearman_r": 0.22738518586984002
+            },
+            {
+              "feature": "feature_440",
+              "spearman_r": 0.22703733562404965
+            }
+          ]
+        }
+      },
+      "available_projections": [
+        "pca",
+        "tsne"
+      ]
+    },
+    "60": {
+      "windows": 4165,
+      "cases": 23,
+      "plotted_windows": 1347,
+      "pca_explained_variance_ratio": [
+        0.5831605135794505,
+        0.1178708057296408
+      ],
+      "feature_correlations": {
+        "SpO2": {
+          "pearson_top10": [
+            {
+              "feature": "feature_040",
+              "pearson_r": 0.16997430843578357
+            },
+            {
+              "feature": "feature_421",
+              "pearson_r": 0.16705760547937984
+            },
+            {
+              "feature": "feature_149",
+              "pearson_r": 0.1664035881626474
+            },
+            {
+              "feature": "feature_199",
+              "pearson_r": 0.16594793387088555
+            },
+            {
+              "feature": "feature_097",
+              "pearson_r": 0.165840322239375
+            },
+            {
+              "feature": "feature_409",
+              "pearson_r": 0.16580423176979775
+            },
+            {
+              "feature": "feature_446",
+              "pearson_r": 0.16543053833217894
+            },
+            {
+              "feature": "feature_440",
+              "pearson_r": 0.1642660441672773
+            },
+            {
+              "feature": "feature_167",
+              "pearson_r": 0.15919961132167884
+            },
+            {
+              "feature": "feature_405",
+              "pearson_r": 0.15891894186769867
+            }
+          ],
+          "spearman_top10": [
+            {
+              "feature": "feature_421",
+              "spearman_r": 0.30337107346005077
+            },
+            {
+              "feature": "feature_047",
+              "spearman_r": 0.29288007735218485
+            },
+            {
+              "feature": "feature_225",
+              "spearman_r": 0.28769637257968517
+            },
+            {
+              "feature": "feature_199",
+              "spearman_r": 0.2841922758465491
+            },
+            {
+              "feature": "feature_167",
+              "spearman_r": 0.28009679241757673
+            },
+            {
+              "feature": "feature_139",
+              "spearman_r": 0.278919396157011
+            },
+            {
+              "feature": "feature_188",
+              "spearman_r": 0.27577671557070726
+            },
+            {
+              "feature": "feature_024",
+              "spearman_r": 0.2750893742563905
+            },
+            {
+              "feature": "feature_430",
+              "spearman_r": 0.27493353670575404
+            },
+            {
+              "feature": "feature_097",
+              "spearman_r": 0.2747800190272696
+            }
+          ]
+        }
+      },
+      "available_projections": [
+        "pca",
+        "tsne"
+      ]
+    }
+  },
+  "umap_available": false,
+  "umap_import_error": "ModuleNotFoundError(\"No module named 'umap'\")"
+}
